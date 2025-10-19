@@ -1,6 +1,9 @@
 console.log("File System Module...");
 
 import fs from "fs";
+import fsp from "fs/promises";
+
+const FILE_NAME_PROMISE = 'copypromise.txt'
 
 const data = " we are writing into the file name as copy";
 // fs.writeFile('copy.txt',data, (err)=>{
@@ -55,8 +58,47 @@ const deleteFile = ()=>{
 }
 
 const watchFile = ()=>{
-    fs.watchFile()
+    fs.watch()
 }
 
 // appendFile()
 
+
+/* Promise based methods: More modern way */
+
+const writeFilePromise = async()=>{
+    try {
+        await fsp.writeFile(FILE_NAME_PROMISE, data,'utf8')  
+        console.log("File Created with data")
+    } catch (error) {
+        console.log("Error Writing FIle ")
+    }
+}
+
+const readFilePromise = async()=>{
+    try {
+        const dataRead= await fsp.readFile(FILE_NAME_PROMISE,'utf8')  
+        console.log("File data  ", dataRead)
+    } catch (error) {
+        console.log("Error Reading FIle ")
+    }
+}
+
+const appendFilePromise = async()=>{
+    try {
+        const dataToAppend = "Append this data"
+        await fsp.appendFile(FILE_NAME_PROMISE, dataToAppend,'utf8')  
+        console.log("File apended data  ")
+    } catch (error) {
+        console.log("Error appending FIle ")
+    }
+}
+
+const deleteFilePromise = async()=>{
+    try {
+        await fsp.unlink(FILE_NAME_PROMISE)  
+        console.log("File deleted  ")
+    } catch (error) {
+        console.log("Error deleting FIle ")
+    }
+}
