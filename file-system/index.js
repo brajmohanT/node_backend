@@ -132,8 +132,8 @@ const filePathResolved = path.resolve('dirName','folderName','fileName.json')
 /* KNOW:  / this is the absolute path sign */
 // const filePathResolved = path.resolve('dirName','/folderName','fileName.json')
 
-console.log("this is the file path ", filePath)
-console.log("resolved this is the file path ", filePathResolved)
+// console.log("this is the file path ", filePath)
+// console.log("resolved this is the file path ", filePathResolved)
 // KNOW: __dirname is a global variable in Node.js that contains the absolute path of the directory where the current JavaScript file resides.
 // THis varible doesn't exists in ES module only in comman js
 // console.log("absolute path of current working directy ", __dirname)
@@ -143,7 +143,40 @@ const baseName = path.basename("/user/brajmohan/file.txt")
 const dirName = path.dirname("/user/brajmohan/file.txt")
 const extensionName = path.extname("/user/brajmohan/file.json")
 const parsePathName = path.parse("/user/brajmohan/file.json")
-console.log("Base Name", baseName)
-console.log("dir Name", dirName)
-console.log("ext Name", extensionName)
-console.log("parsed path Name", parsePathName)
+// console.log("Base Name", baseName)
+// console.log("dir Name", dirName)
+// console.log("ext Name", extensionName)
+// console.log("parsed path Name", parsePathName)
+
+
+// console.log(fs.existsSync('copy.txt'))
+
+/* 
+process.argv array
+Index,Value,Description
+[0]: /path/to/node: The path to the Node.js executable itself.
+[1]: /path/to/your/script.js: The path to the JavaScript file being executed.
+[2]: user_input: The first actual command-line argument provided by the user at the launch of program.
+*/
+/* console.log(process.argv[0])
+console.log(process.argv[1])
+console.log(process.argv[2]) */
+
+
+
+//fs.stat() method : returns the stats about the path.
+// returns the stat object conatining info of stat props
+/* 
+Property/Method	Description
+.size	The total size of the file in bytes.
+.isFile()	A method that returns true if the path points to a regular file.
+.isDirectory()	A method that returns true if the path points to a directory (folder).
+.mtime	The "Modified Time"—the time the file's content was last modified (as a Date object).
+.birthtime	The "Birth Time"—the time the file was created (as a Date object).
+.atime	The "Access Time"—the time the file was last accessed (read).
+
+*/
+
+const statOftxt = fs.statSync('copy.txt')
+// console.log('stat of file ', statOftxt);
+
