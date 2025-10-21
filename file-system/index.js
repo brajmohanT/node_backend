@@ -2,6 +2,7 @@ console.log("File System Module...");
 
 import fs from "fs";
 import fsp from "fs/promises";
+import path from 'path'
 
 const FILE_NAME_PROMISE = 'copypromise.txt'
 
@@ -125,3 +126,24 @@ const watchFilePromise = async()=>{
 
 /* Path Module  */
 
+const filePath = path.join('dirName','folderName','fileName.json')
+const filePathResolved = path.resolve('dirName','folderName','fileName.json')
+
+/* KNOW:  / this is the absolute path sign */
+// const filePathResolved = path.resolve('dirName','/folderName','fileName.json')
+
+console.log("this is the file path ", filePath)
+console.log("resolved this is the file path ", filePathResolved)
+// KNOW: __dirname is a global variable in Node.js that contains the absolute path of the directory where the current JavaScript file resides.
+// THis varible doesn't exists in ES module only in comman js
+// console.log("absolute path of current working directy ", __dirname)
+
+
+const baseName = path.basename("/user/brajmohan/file.txt")
+const dirName = path.dirname("/user/brajmohan/file.txt")
+const extensionName = path.extname("/user/brajmohan/file.json")
+const parsePathName = path.parse("/user/brajmohan/file.json")
+console.log("Base Name", baseName)
+console.log("dir Name", dirName)
+console.log("ext Name", extensionName)
+console.log("parsed path Name", parsePathName)
