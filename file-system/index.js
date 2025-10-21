@@ -58,7 +58,11 @@ const deleteFile = ()=>{
 }
 
 const watchFile = ()=>{
-    fs.watch()
+    fs.watch('copy.txt','utf8',(evnt,fileNm)=>{
+
+        console.log("\nFile Is being changed ",fileNm, "has", evnt)
+        
+    })
 }
 
 // appendFile()
@@ -71,7 +75,7 @@ const writeFilePromise = async()=>{
         await fsp.writeFile(FILE_NAME_PROMISE, data,'utf8')  
         console.log("File Created with data")
     } catch (error) {
-        console.log("Error Writing FIle ")
+        console.log("Error Writing FIle ", error)
     }
 }
 
@@ -80,7 +84,7 @@ const readFilePromise = async()=>{
         const dataRead= await fsp.readFile(FILE_NAME_PROMISE,'utf8')  
         console.log("File data  ", dataRead)
     } catch (error) {
-        console.log("Error Reading FIle ")
+        console.log("Error Reading FIle ", error)
     }
 }
 
@@ -90,7 +94,7 @@ const appendFilePromise = async()=>{
         await fsp.appendFile(FILE_NAME_PROMISE, dataToAppend,'utf8')  
         console.log("File apended data  ")
     } catch (error) {
-        console.log("Error appending FIle ")
+        console.log("Error appending FIle ", error)
     }
 }
 
@@ -99,6 +103,25 @@ const deleteFilePromise = async()=>{
         await fsp.unlink(FILE_NAME_PROMISE)  
         console.log("File deleted  ")
     } catch (error) {
-        console.log("Error deleting FIle ")
+        console.log("Error deleting FIle ", error)
     }
 }
+
+
+const watchFilePromise = async()=>{
+    try {
+        const watcher = fsp.watch('copy.txt')
+        for await (const event of watcher)
+            console.log("watching ", event.eventType)
+    } catch (error) {
+        console.log("error watching file ", error)
+    }
+}
+// writeFilePromise()
+// deleteFilePromise()
+// watchFile()
+// watchFilePromise()
+
+
+/* Path Module  */
+
