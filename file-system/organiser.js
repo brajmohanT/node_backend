@@ -43,10 +43,11 @@ const getCategory = (ext)=>{
 
     for(const entries of Object.entries(filesExt)){
         const [cat, extensions] = [...entries]
+        
         if(extensions.includes(ext.toLowerCase())) return cat
 
-        return 'other'
     }
+    return 'other'
 }
 
 const organiseFolder = ()=>{
