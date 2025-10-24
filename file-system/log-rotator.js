@@ -28,8 +28,6 @@ const SIZE_LIMIT = 0.10*1024*1024
 
 const rotateLogs = async()=> {
 
-      const absPath = path.resolve(LOG_FILE)
-    const fileStat = await fs.stat(absPath)
 
      if( await fileExists(`${LOG_FILE}.${MAX_ARCHIEVE}`))
         await fs.unlink(`${LOG_FILE}.${MAX_ARCHIEVE}`)
@@ -46,7 +44,6 @@ const rotateLogs = async()=> {
     // createNewFile app.log
     await fs.writeFile(LOG_FILE,"")
 
-    // delete app.log.4
 
 }
 
@@ -55,7 +52,6 @@ const writeLog = async(txt)=> {
 
     // if log file [app.log] exists-> (check the file size -> (size>10MB rotate and then write )else write) else create file and write.
     const absPath = path.resolve(LOG_FILE)
-    const fileStat = await fs.stat(absPath)
 
     console.log(await getFileSize(absPath), SIZE_LIMIT)
     if(await getFileSize(absPath) > SIZE_LIMIT){
