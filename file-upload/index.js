@@ -54,12 +54,14 @@ app.post('/upload', (req, res)=>{
             return res.status(500).json({ok:false, message: e.message})
         })
 
-        busboy.on('error', (e)=>{
+       
+    })
+
+     busboy.on('error', (e)=>{
             return res.status(400).json({ok:false, error: e.message})
         })
-        req.pipe(busboy)
-    })
-    return res.json({tyep:'sb shi hai'})
+    req.pipe(busboy)
+    // return res.json({tyep:'sb shi hai'})
 })
 
 app.listen(3002, ()=>{
