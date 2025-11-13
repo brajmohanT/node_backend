@@ -19,7 +19,7 @@ app.post('/upload', (req, res)=>{
 
         const {filename, mimeType} = info
 
-        const allowedType = ['image/png', 'image/jpeg', 'application/pdf']
+        const allowedType = ['image/png', 'image/jpeg', 'application/pdf', 'video/mp4']
 
         let saved = false;
 
@@ -29,7 +29,9 @@ app.post('/upload', (req, res)=>{
         }
 
         const safeName = crypto.randomBytes(8).toString('hex') + path.extname(filename)
-        const saveTo = path.join('uploads', safeName)
+        // const saveTo = path.join('uploads', safeName) [QUESTION: Why not use this?]
+        const saveTo = path.join(process.cwd(), "uploads", safeName);
+
 
         const writeStream = fs.createWriteStream(saveTo)
         file.pipe(writeStream)
